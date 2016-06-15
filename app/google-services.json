@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "509338444142",
+    "project_id": "outsportubuntu"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509338444142:android:43d370ebab55790a",
+        "android_client_info": {
+          "package_name": "uctsoft.outsport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509338444142-74630gllc4nrn9gj5ihm0pn1q638tc13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNsGFdklX9IF30dJMRw-kBeDZyADEaLoQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509338444142:android:827ae8b09b2c0294",
+        "android_client_info": {
+          "package_name": "outsport.outsport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509338444142-mhbe6akr1k4cc1icji17qqnb6b4dvefr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "outsport.outsport",
+            "certificate_hash": "7591C0944CBED1FB01FC519108A66A151B6D629A"
+          }
+        },
+        {
+          "client_id": "509338444142-74630gllc4nrn9gj5ihm0pn1q638tc13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNsGFdklX9IF30dJMRw-kBeDZyADEaLoQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
