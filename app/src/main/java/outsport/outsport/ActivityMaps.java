@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import outsport.outsport.BD.Constantes;
 import outsport.outsport.BD.CustomVolleyRequestQueue;
 import outsport.outsport.BD.Peticiones;
+import outsport.outsport.entidades.Eventos;
 import outsport.outsport.util.Internet;
 import outsport.outsport.util.TrasladorDeObjetos;
 
@@ -42,9 +43,6 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
     private Intent i;
 
     public void marca_punto(LatLng punto, String titulo, String desc) {
-
-
-
         this.mapa.addMarker( /// agregar letrero con icono en el mapa
                 new MarkerOptions()
                         .position(punto)
@@ -76,7 +74,7 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
         mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 
         mapa.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(UPV, 15));
+
         mapa.getUiSettings().setZoomControlsEnabled(false);
         mapa.getUiSettings().setCompassEnabled(true);
         mapa.setOnMapClickListener(this);
@@ -149,7 +147,7 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
                     case "1": // EXITO
                         JSONArray jArray = pet.getJsob().getJSONArray("ubicaciones_eventos");
 
-                        for(int i=0; i < jArray.length(); i++){
+                        for (int i = 0; i < jArray.length(); i++) {
                             JSONObject json_data = jArray.getJSONObject(i);
 
                             marca_punto(
@@ -164,8 +162,8 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
                             mapa.moveCamera(
                                     CameraUpdateFactory.newLatLngZoom(
                                             new LatLng(
-                                                    -38.7289346,
-                                                    -72.6729331
+                                                    mapa.getMyLocation().getLatitude(),
+                                                    mapa.getMyLocation().getLongitude()
                                             ),
                                             8
                                     )
@@ -181,7 +179,8 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
             } catch (JSONException e) {
                 System.out.println(e);
             }
-        } else {}
+        } else {
+        }
     }
 
     @Override
@@ -196,8 +195,8 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
                             "&distance=" + 100);
                     pet.Obtener((
                             Constantes.Obtener_eventos_cercanos +
-                            "?lat=" + -38.7289346 +
-                            "&lng=" + -72.6729331 +
+                            "?lat=" + mapa.getMyLocation().getLatitude() +
+                            "&lng=" + mapa.getMyLocation().getLongitude() +
                             "&distance=" + 100
                     ).trim());
                     mQueue.add(pet.getJsonRequest());
@@ -214,9 +213,12 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        TrasladorDeObjetos.setObjeto(
-                marker
+        Eventos ev = new Eventos(
+                marker.getSnippet(),
+                marker.getTitle(),
+                marker.getPosition()
         );
+        TrasladorDeObjetos.setEvent(ev);
         i = new Intent(
                 this,
                 PerfilEventosActivity.class

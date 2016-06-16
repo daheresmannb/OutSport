@@ -7,12 +7,14 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import outsport.outsport.componentes.ImageView;
 import outsport.outsport.componentes.LinearLayout;
@@ -141,13 +143,21 @@ public class SplashActivity extends Activity {
 
         this.setContentView(contenedor); //
 
-        new Handler().postDelayed(new Runnable() {
+        TimerTask task = new TimerTask() {
             @Override
-            public void run() { // una ves carga la aplicacion pasa del activity Splash al login
-                Intent i = new Intent(SplashActivity.this, ActivityInicio.class);
+            public void run() {
+                Intent i = new Intent().setClass(
+                        SplashActivity.this,
+                        ActivityInicio.class
+                );
                 startActivity(i);
                 finish();
             }
-        }, 3000 /* segundos que se queda en el splash */);
+        };
+        Timer timer = new Timer();
+        timer.schedule(
+                task,
+                3000
+        );
     }
 }

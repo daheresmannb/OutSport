@@ -13,14 +13,12 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.maps.model.Marker;
-
 import outsport.outsport.componentes.DinamicBar;
 import outsport.outsport.componentes.LinearLayout;
+import outsport.outsport.entidades.Eventos;
 import outsport.outsport.util.TrasladorDeObjetos;
 
 
@@ -30,16 +28,18 @@ public class PerfilEventosActivity extends AppCompatActivity implements View.OnC
     private Intent i;
     private DisplayMetrics met;
     private LinearLayout layout_buttons;
-    private Marker ev;
+    private Eventos ev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setTheme(android.R.style.Theme_Holo_NoActionBar_TranslucentDecor);
-        obtener_usuario();
+        obtener_event();
         met = getResources().getDisplayMetrics();
-
-        db = new DinamicBar(this,met);
+        db = new DinamicBar(
+                this,
+                met
+        );
         db.getImg().setBackgroundDrawable(
                 getResources().getDrawable(
                         R.mipmap.ic_launcher
@@ -64,17 +64,18 @@ public class PerfilEventosActivity extends AppCompatActivity implements View.OnC
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
         db.getCollapsingToolbarLayout().setTitle(
-                ev.getTitle()
+                ev.getTitulo()
         );
+
         setContentView(db);
         setSupportActionBar(db.getToolbar());
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    public void obtener_usuario() {
-        if (TrasladorDeObjetos.getObjeto() != null)
-            ev = (Marker) TrasladorDeObjetos.getObjeto();
+    public void obtener_event() {
+        if (TrasladorDeObjetos.getEvent() != null)
+            ev = (Eventos) TrasladorDeObjetos.getEvent();
     }
 
     private void dynamicToolbarColor() {
@@ -114,15 +115,7 @@ public class PerfilEventosActivity extends AppCompatActivity implements View.OnC
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-
-        menu.add(0, 0, 0, "Option1").setShortcut('3', 'c');
-        menu.add(0, 1, 0, "Option2").setShortcut('3', 'c');
-        menu.add(0, 2, 0, "Option3").setShortcut('4', 's');
-
-        SubMenu sMenu = menu.addSubMenu(0, 3, 0, "SubMenu"); //If you want to add submenu
-        sMenu.add(0, 4, 0, "SubOption1").setShortcut('5', 'z');
-        sMenu.add(0, 5, 0, "SubOption2").setShortcut('5', 'z');
-
+        menu.add(0, 0, 0, "Asistir a evento").setShortcut('3', 'c');
         return true;
     }
 
@@ -132,20 +125,18 @@ public class PerfilEventosActivity extends AppCompatActivity implements View.OnC
             case 0:
                 // code for option1
                 return true;
-            case 1:
-                // code for option2
-                return true;
-            case 2:
-                // code for option3
-                return true;
-            case 4:
-                // code for subOption1
-                return true;
-            case 5:
-                // code for subOption2
-                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        i = new Intent(
+                this,
+                ActivityMaps.class
+        );
+        startActivity(i);
+        finish();
     }
 
     @Override

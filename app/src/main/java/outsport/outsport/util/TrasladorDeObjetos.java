@@ -7,6 +7,15 @@ public class TrasladorDeObjetos {
     private static Object objeto = null;
     private static Object face = null;
     private static Object google = null;
+    private static Object event = null;
+
+    public static Object getEvent() {
+        return event;
+    }
+
+    public static void setEvent(Object Event) {
+        event = Event;
+    }
 
     public static void setObjeto(Object Objeto) {
         objeto = Objeto;

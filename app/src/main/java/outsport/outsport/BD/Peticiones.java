@@ -52,7 +52,6 @@ public class Peticiones {
                     }
                 },
                 new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         flag = false;

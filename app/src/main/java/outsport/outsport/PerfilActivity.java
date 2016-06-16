@@ -185,6 +185,11 @@ public class PerfilActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    public void onBackPressed() {
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case 1:
