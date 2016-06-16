@@ -189,10 +189,11 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
             case R.id.button4:
                 if (Internet.isOnline(this)) {
                     pet.ProcessDialog();
-                    System.out.println(Constantes.Obtener_eventos_cercanos +
+                    /*      System.out.println(Constantes.Obtener_eventos_cercanos +
                             "?lat=" + -38.7289346 +
                             "&lng=" + -72.6729331 +
                             "&distance=" + 100);
+                            */
                     pet.Obtener((
                             Constantes.Obtener_eventos_cercanos +
                             "?lat=" + mapa.getMyLocation().getLatitude() +
