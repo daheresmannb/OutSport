@@ -1,7 +1,6 @@
 package outsport.outsport;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -40,9 +39,12 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.PlusShare;
 import com.google.android.gms.plus.model.people.Person;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.Arrays;
+
 import outsport.outsport.componentes.Button;
 import outsport.outsport.componentes.ImageView;
 import outsport.outsport.componentes.LinearLayout;

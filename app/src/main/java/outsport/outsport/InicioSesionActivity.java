@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+
 import outsport.outsport.componentes.EditText;
 import outsport.outsport.componentes.LinearLayout;
 

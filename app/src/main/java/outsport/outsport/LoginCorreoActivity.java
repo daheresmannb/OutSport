@@ -204,12 +204,11 @@ public class LoginCorreoActivity extends Activity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        System.out.println(editPass.getText().toString());
         switch (v.getId()) {
             case 1:
                 /************* paso 4 *************************/
                 /***********************
-                 solicitar informacio
+                 solicitar informacion
                  ***********************/
                 if (Internet.isOnline(this)) {
                     pet.ProcessDialog();

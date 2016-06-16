@@ -10,4 +10,5 @@ public class Constantes {
     public static String obtener_imagen_x_correo = "http://pillan.inf.uct.cl/~dpalma/OUTSPORTWS/Imagen/obtener_imagen_por_correo.php?correo=";
     public static String insertar_usuario = "http://pillan.inf.uct.cl/~dpalma/OUTSPORTWS/Usuario/insertar_usuario.php";
     public static String obtener_eventos="http://pillan.inf.uct.cl/~dpalma/OUTSPORTWS/Ubicaciones_eventos/obtener_ubicaciones_eventos.php";
+    public static String Obtener_eventos_cercanos="http://pillan.inf.uct.cl/~dpalma/OUTSPORTWS/Ubicaciones_eventos/obtener_eventos_radio.php";
 }
