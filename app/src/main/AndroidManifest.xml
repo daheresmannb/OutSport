@@ -13,7 +13,6 @@
     <permission
         android:name="outsport.outsport.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
-
     <permission
         android:name="outsport.outsport.permission.ACCESS_FINE_LOCATION"
         android:protectionLevel="signature" />
@@ -50,7 +49,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -64,12 +62,10 @@
             android:name=".facebookclases.AccessTokenActivity"
             android:label="@string/title_activity_access_token"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ActivityInicio"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".InicioSesionActivity" />
         <activity android:name=".RegistroFormActivity" />
         <activity android:name=".LoginCorreoActivity" />
@@ -77,10 +73,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".eventos.BuscarEventosActivity" />
         <activity android:name=".eventos.Lista_eventos" />
-
-        <activity android:name=".logingoogle.SignInGoogleActivity"/>
-
-
+        <activity android:name=".logingoogle.SignInGoogleActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -90,7 +83,8 @@
         </activity>
         <activity
             android:name=".ActivityMaps"
-            android:label="@string/title_activity_activity_maps"></activity>
+            android:label="@string/title_activity_activity_maps" />
+        <activity android:name=".PerfilEventosActivity"></activity>
     </application>
 
 </manifest>

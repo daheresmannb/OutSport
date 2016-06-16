@@ -45,6 +45,7 @@ public class LoginCorreoActivity extends Activity implements View.OnClickListene
     private ProgressDialog pdia;
     private Button olvidepass;
     private Button buttonLogin;
+    Intent i;
     /************* paso 2 *************************/
     private RequestQueue mQueue;
     private Peticiones pet;
@@ -231,14 +232,13 @@ public class LoginCorreoActivity extends Activity implements View.OnClickListene
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(
+        i = new Intent(
                 this,
                 LoginActivity.class
         );
         startActivity(i);
         finish();
     }
-
 
     @Override
     public void onRequestFinished(Request<Object> request) {
@@ -264,11 +264,11 @@ public class LoginCorreoActivity extends Activity implements View.OnClickListene
                             );
 
                             TrasladorDeObjetos.setObjeto(user);
-                            Intent intent = new Intent(
+                            i = new Intent(
                                     this,
                                     PerfilActivity.class
                             );
-                            startActivity(intent);
+                            startActivity(i);
                             finish();
                             pet.setFlag(false);
                         } else {

@@ -1,5 +1,6 @@
 package outsport.outsport;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -26,18 +28,23 @@ import outsport.outsport.BD.Constantes;
 import outsport.outsport.BD.CustomVolleyRequestQueue;
 import outsport.outsport.BD.Peticiones;
 import outsport.outsport.util.Internet;
+import outsport.outsport.util.TrasladorDeObjetos;
 
 /**
  * Created by Daniel on 29-04-2016.
  */
-public class ActivityMaps extends FragmentActivity implements View.OnClickListener, GoogleMap.OnMapClickListener, RequestQueue.RequestFinishedListener<Object> {
+public class ActivityMaps extends FragmentActivity implements View.OnClickListener, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener,RequestQueue.RequestFinishedListener<Object> {
     private final LatLng UPV = new LatLng(39.481106, -0.340987);
     private GoogleMap mapa;
     private RequestQueue mQueue;
     private Peticiones pet;
     private Button boton;
+    private Intent i;
 
     public void marca_punto(LatLng punto, String titulo, String desc) {
+
+
+
         this.mapa.addMarker( /// agregar letrero con icono en el mapa
                 new MarkerOptions()
                         .position(punto)
@@ -73,6 +80,8 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
         mapa.getUiSettings().setZoomControlsEnabled(false);
         mapa.getUiSettings().setCompassEnabled(true);
         mapa.setOnMapClickListener(this);
+        mapa.setOnMarkerClickListener(this);
+
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mapa.setMyLocationEnabled(true);
@@ -85,7 +94,11 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
     }
 
     public void moveCamera(View view) {
-        mapa.moveCamera(CameraUpdateFactory.newLatLng(UPV));
+        mapa.moveCamera(
+                CameraUpdateFactory.newLatLng(
+                        UPV
+                )
+        );
     }
 
     public void animateCamera(View view) {
@@ -108,9 +121,22 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
 
     @Override
     public void onMapClick(LatLng puntoPulsado) {
-        mapa.addMarker(new MarkerOptions().position(puntoPulsado).
-                icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+        mapa.addMarker(
+                new MarkerOptions().position(puntoPulsado).icon(
+                        BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)
+                )
+        );
+    }
+
+    @Override
+    public void onBackPressed() {
+        i = new Intent(
+                this,
+                PerfilActivity.class
+        );
+        startActivity(i);
+        finish();
     }
 
     @Override
@@ -126,8 +152,6 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
                         for(int i=0; i < jArray.length(); i++){
                             JSONObject json_data = jArray.getJSONObject(i);
 
-                            System.out.println(json_data.getDouble("X"));
-
                             marca_punto(
                                     new LatLng(
                                             json_data.getDouble("X"),
@@ -136,13 +160,14 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
                                     json_data.getString("nombre"),
                                     ""
                             );
+
                             mapa.moveCamera(
                                     CameraUpdateFactory.newLatLngZoom(
                                             new LatLng(
                                                     -38.7289346,
                                                     -72.6729331
                                             ),
-                                            1500
+                                            8
                                     )
                             );
                         }
@@ -185,5 +210,19 @@ public class ActivityMaps extends FragmentActivity implements View.OnClickListen
                 }
                 break;
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        TrasladorDeObjetos.setObjeto(
+                marker
+        );
+        i = new Intent(
+                this,
+                PerfilEventosActivity.class
+        );
+        startActivity(i);
+        finish();
+        return false;
     }
 }

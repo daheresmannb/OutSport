@@ -13,31 +13,6 @@
         class="com.google.android.gms.maps.SupportMapFragment"/>
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/button2"
-        android:onClick="moveCamera"
-        android:text="ir a UPV" />
-
-    <Button
-        android:id="@id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="animateCamera"
-        android:text="a mi posición" />
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/button2"
-        android:onClick="addMarker"
-        android:text="marcador" />
-    <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
